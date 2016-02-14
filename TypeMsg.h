@@ -2,6 +2,9 @@
 #define TYPEMSG_H
 
 #include "MainMsg.h"
+#include <string>
+
+using namespace std;
 
 class FBMSG: public MainMsg
 {

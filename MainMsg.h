@@ -3,6 +3,8 @@
 
 #include <string>
 
+using namespace std;
+
 class MainMsg
 {
 public:
@@ -10,14 +12,14 @@ public:
 	virtual ~MainMsg();
 	
 	void setMsg(string );	
-	void getSender(string& )const; 	//Author
-	string getAuthor();		
+	void getAuthor(string& )const; 	//Author
+//	string getAuthor();		
 	virtual void print() const = 0;
 	//Maybe time?
 
 private:
 	string Author;
-	string message;
+	string Message;
 
 };
 #endif
