@@ -2,7 +2,8 @@
 #define ENGINE_H
 
 #include "MainContact.h"
-#include "TypeContact.h"
+#include "TypeContact.h" //Do I really need it here???
+#include "MainMsg.h"
 
 #include <string>
 
@@ -12,8 +13,9 @@ public:
 	Engine(const string& users);
 	~Engine();
 	void SendMsg(MainContact* Recicever);
-	ReceiveMsg();
+	void ReceiveMsg();
 	void setUser(string);
+	void OpenInbox();	//print what Inbox contain
 
 private:
 	vector<MSG*> inBox; 
