@@ -17,6 +17,8 @@ Engine::~Engine()
 
 void Engine::SendMsg(MainContact* Recicever)
 {
+	cin.clean();
+
 	cout << "**Press '..' to send your message**";
 
 	//Facebook
@@ -26,7 +28,7 @@ void Engine::SendMsg(MainContact* Recicever)
 		cout << "Type your message\n"; 		\\Maybe .. to end?
 		while(cin >> msg)
 		{
-			if(msg == "..")
+			if(msg == "\n.")
 				break;
 			
 			input = input + msg;
@@ -37,19 +39,30 @@ void Engine::SendMsg(MainContact* Recicever)
 		
 		FBMSG Face(users);
 		Face.setAttach(Attachment);
-		Face.setMsg(msg);
+		Face.setMsg(input);
 		cout << "**Message has been sent**\n";
 	
 	}
 	//Email
 	else if(typeid(Email) == typeid(*Recicever))
 	{
-
+		
 	}
 	//phoneNumber contact
 	else if(typeid(PhoneMsg) == typeid(*Recicever))
 	{
-
+		string msg, Attachment, input;
+		cout << "Type your message: ";
+		
+		while(cin >> msg)
+		{
+			if(msg =="\n.")
+				break;
+			input = input + msg;
+		}
+	
+	
+	
 	}
 	else
 		cout << "**Could NOT find info about your contact**\n\n";
@@ -66,6 +79,8 @@ void Engine::ReceiveMsg()
 	//tmpMsg = "...ATTACHMENT...";
 	//Face->setAttach(tmpMsg);
 	//inBox.push_back(Face);
+
+
 }
 
 void Engine::setUser(string users)
