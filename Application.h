@@ -5,15 +5,17 @@
 #include "MainContact.h"
 #include "Engine.h"
 
+#include <string>
 
 class Application
 {
 public:
 	Application();
-//	~Application();
+//	~Application(); 
+// map <int, MainContact*> GroupOfContact; //list
 	string SignIn;
-	void InterAct();
-	void PrintContact();
+	void MakeChoice();
+	void ShowContacts();
 	Contact* getContact();
 
 private:
