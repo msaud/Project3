@@ -1,26 +1,26 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <string>
 #include "MainContact.h"
 #include "Engine.h"
 
 #include <string>
+#include <map>
 
 class Application
 {
 public:
 	Application();
-//	~Application(); 
-// map <int, MainContact*> GroupOfContact; //list
-	string SignIn;
+	//  ~Application();
+	string SignIn();
 	void MakeChoice();
 	void ShowContacts();
-	Contact* getContact();
+	MainContact* getContact();
+	char DisplayMenu();
 
 private:
 	Engine aEngine;
-	int ContactCounter;
+	int NumberOfContacts;
 	void getContacts();
 	map <int, MainContact*> List;
 };

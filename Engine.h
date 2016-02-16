@@ -4,8 +4,11 @@
 #include "MainContact.h"
 #include "TypeContact.h" //Do I really need it here???
 #include "MainMsg.h"
+#include "TypeMsg.h"
 
 #include <string>
+#include <vector>
+
 
 class Engine
 {
@@ -15,10 +18,11 @@ public:
 	void SendMsg(MainContact* Recicever);
 	void ReceiveMsg();
 	void setUser(string);
-	void OpenInbox();	//print what Inbox contain
+	void OpenInbox();   //print what Inbox contain
 
 private:
-	vector<MSG*> inBox; 
-	string users; \\hmmm
+	vector<MainMsg*> inBox;
+	string users;
 };
 #endif
+#

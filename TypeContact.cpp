@@ -7,7 +7,7 @@ FB::FB(const string& Name,const string& FBUser): MainContact(Name)
 	this->FBUser = FBUser;
 }
 
-//FB::~FB(){}
+FB::~FB(){}
 void FB::getFB(string& FBUser)
 {
 	FBUser = this->FBUser;
@@ -27,7 +27,7 @@ Email::Email(const string& Name,const string& EmailAddress): MainContact(Name)
 	this->EmailAddress = EmailAddress;
 }
 
-//Email::~Email(){}
+Email::~Email(){}
 
 void Email::getEmail(string& EmailAddress)
 {
@@ -48,7 +48,7 @@ PhoneMsg::PhoneMsg(const string& Name,const string& PhoneNum): MainContact(Name)
 	this->PhoneNum = PhoneNum;
 }
 
-//PhoneMsg::PhoneMsg(){}
+PhoneMsg::~PhoneMsg(){}
 
 void PhoneMsg::getPhone(string& PhoneNum)
 {

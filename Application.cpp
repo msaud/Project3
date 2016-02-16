@@ -1,10 +1,9 @@
 #include "Application.h"
 
-char DisplayMenu();
 
-Application::Application()//:Engine(SignIn())
+Application::Application():aEngine(SignIn())
 {
-	ContactCounter = 0;
+	NumberOfContacts = 0;
 	getContacts();
 }
 
@@ -28,7 +27,7 @@ void Application::MakeChoice()
 		switch(selection)
 		{
 			case 'a':
-				cout << "Send a message\n"
+				cout << "Send a message\n";
 				break;
 			case 'b':
 				cout << "Check inbox\n";
@@ -56,7 +55,7 @@ void Application::ShowContacts()
 	}
 }
 
-Contact* Application::getContact()
+MainContact* Application::getContact()
 {
 	int Who = 0;
 	ShowContacts();
@@ -65,27 +64,26 @@ Contact* Application::getContact()
 	
 	int IndexContact = Who - 1;
 
-	return //ContactList[IndexContact];
+	return List[IndexContact];
 }
 
 void Application::getContacts()
 {
 	//ListOfContact
 	//Contact[0] = new FBContact("NAME", "334");
-	//NumberOfContacts++;
-
+//	NumberOfContacts++;
 
 }
 
-char DisplayMenu()
+char Application::DisplayMenu()
 {
 	char choice;
 	cout << "Main Menu\n"
 		 << "	a) Send a message\n"
 		 << "	b) Open my inbox\n"
-		 << "	c) Show my contacts"
-		 << " 	d) Exit\n";
-		 << "	\nPlease make a selection:\n";
+		 << "	c) Show my contacts\n"
+		 << " 	d) Exit"
+		 << "	\nPlease make a selection: ";
 
 	cin >> choice;
 	cin.ignore();

@@ -10,10 +10,12 @@ class MainMsg
 public:
 	MainMsg(const string& ); //sender
 	virtual ~MainMsg();
-	
-	void setMsg(string );	
-	void getAuthor(string& )const; 	//Author
-//	string getAuthor();		
+
+	void setMsg(string );
+	//  void getAuthor(string& )const;  //Author
+
+	string getAuthor()const;
+	string getMsg()const;
 	virtual void print() const = 0;
 	//Maybe time?
 
@@ -23,3 +25,4 @@ private:
 
 };
 #endif
+
