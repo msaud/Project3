@@ -25,4 +25,3 @@ private:
 	string users;
 };
 #endif
-#

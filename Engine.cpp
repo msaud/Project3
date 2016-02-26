@@ -5,39 +5,36 @@
 
 using namespace std;
 
-/*
-Engine::Engine()
-{
-
-}*/
 Engine::Engine(const string& users)
 {
 	setUser(users);
-//	this->users = users;
 	ReceiveMsg();
 }
 
 Engine::~Engine()
 {
+	for (auto it = inBox.begin(); it != inBox.end(); it++)
+		delete (*it);
+
 }
 
 void Engine::SendMsg(MainContact* Recicever)
 {
 	cin.clear();
 
-	cout << "**Press '..' to send your message**";
+	cout << "***Press '..' in a new line to send your message***\n";
 
 	//Facebook
 	if(typeid(FB) == typeid(*Recicever))
 	{
 		string msg, Attachment, input;
-		cout << "Type your message\n"; 		//Maybe .. to end?
+		cout << "Type your Facebook message\n"; 		//Maybe .. to end?
 		while(cin >> msg)
 		{
-			if(msg == "\n.")
+			if(msg == "..")
 				break;
 			
-			input = input + msg;
+			input += msg;
 		}
 		
 		cout << "Insert attachment: ";
@@ -58,9 +55,9 @@ void Engine::SendMsg(MainContact* Recicever)
 		cout << "Type your email: ";
 		while(cin >> msg)
 		{
-			if(msg == "\n")
+			if(msg == "..")
 				break;
-			input = input + msg;
+			input += msg;
 		}
 
 		cout << "Insert attachment: ";
@@ -79,9 +76,9 @@ void Engine::SendMsg(MainContact* Recicever)
 		
 		while(cin >> msg)
 		{
-			if(msg =="\n.")
+			if(msg =="..")
 				break;
-			input = input + msg;
+			input += msg;
 		}
 
 		TxtMSG aPhoneMsg(users);
@@ -92,40 +89,61 @@ void Engine::SendMsg(MainContact* Recicever)
 	}
 	//Add MMS 
 	else
+	{
 		cout << "**Could NOT find info about your contact**\n\n";
-
+	}
 }
 
 void Engine::ReceiveMsg()
 {
 	string tmpSender, tmpMsg;
 	
-	//recive facebook messages
-	tmpSender = " ....SENDER...";
+	//recive facebook messages from Sarah
+	tmpSender = "Sarah Jamal";	//Hanna Han
 	FBMSG *aFace = new FBMSG(tmpSender);
-	tmpMsg = ".....FACEMSG....";
+	tmpMsg = "This picture we took in the beach last week";
 	aFace->setMsg(tmpMsg);
-	tmpMsg = "...ATTACHMENT...";
+	tmpMsg = "beach.jpg";
 	aFace->setAttach(tmpMsg);
 	inBox.push_back(aFace);
 
 
+	//recive facebook messages from Hanna
+/*	tmpSender = "Hanna Han";
+	FBMSG *aFace = new FBMSG(tmpSender);
+	tmpMsg = "Check out this funny videos :D :D";
+	aFace->setMsg(tmpMsg);
+	tmpMsg = "Funny.mp4";
+	aFace->setAttach(tmpMsg);
+	inBox.push_back(aFace);
+*/
+
 	//recive an Email
-	tmpSender = " ....SENDER...";
+	tmpSender = "Faez Soud";	
 	EmailMSG * aEmail = new EmailMSG(tmpSender);
-	tmpMsg = ".....Subject....";
+	tmpMsg = "Transcript";
 	aEmail->setSub(tmpMsg);
-	tmpMsg = ".....FACEMSG....";
+	tmpMsg = "I attached my transcript in this email";
 	aEmail->setMsg(tmpMsg);
-	tmpMsg = "...ATTACHMENT...";
+	tmpMsg = "transcript.pdf";
 	aEmail->setAttach(tmpMsg);
 	inBox.push_back(aEmail);
 
+	//recive an Email from Sofia
+/*	tmpSender = "Sofia ";    
+	EmailMSG * aEmail = new EmailMSG(tmpSender);
+	tmpMsg = "Final project";
+	aEmail->setSub(tmpMsg);
+	tmpMsg = "I will be free on Wednesday after none to finish out group project";
+	aEmail->setMsg(tmpMsg);
+	tmpMsg = "schdule.xlsx";
+	aEmail->setAttach(tmpMsg);
+	inBox.push_back(aEmail);*/
 	
 	//Recive a text message
-	tmpSender = " ....SENDER...";
+	tmpSender = "Mohamed Saud";
     TxtMSG * aPhoneMsg = new TxtMSG(tmpSender);
-    tmpMsg = ".....FACEMSG....";
+    tmpMsg = "Please give us a call to keep you updated on your car's status";
     aPhoneMsg->setMsg(tmpMsg);
     inBox.push_back(aPhoneMsg);
 
@@ -138,6 +156,11 @@ void Engine::setUser(string users)
 
 void Engine::OpenInbox()
 {
-	for(int index = 0; index < inBox.size(); index++)
+	cout << endl;
+	unsigned int index;
+	for(index = 0; index < inBox.size(); index++)
+	{
 		inBox[index]->print();
+		cout << endl << endl;
+	}
 }

@@ -11,7 +11,7 @@ class Application
 {
 public:
 	Application();
-	//  ~Application();
+	~Application();
 	string SignIn();
 	void MakeChoice();
 	void ShowContacts();

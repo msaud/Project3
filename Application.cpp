@@ -7,11 +7,24 @@ Application::Application():aEngine(SignIn())
 	getContacts();
 }
 
+Application::~Application()
+{
+	delete List[0];
+	delete List[1];
+	delete List[2];
+
+
+}
+
 string Application::SignIn()
 {
-	string inPutUserName;
-	cout << "Please enter your username: ";
+	string inPutUserName, inPutPassword;
+	cout << "Username: ";
 	cin >> inPutUserName;
+	cin.clear();
+	cout << "Password: ";
+	cin >> inPutPassword;
+	cout << endl;
 	return inPutUserName;
 }
 
@@ -28,12 +41,15 @@ void Application::MakeChoice()
 		{
 			case 'a':
 				cout << "Send a message\n";
+				aEngine.SendMsg(getContact());
 				break;
 			case 'b':
-				cout << "Check inbox\n";
+				cout << "Open My inbox\n";
+				aEngine.OpenInbox();
 				break;
 			case 'c':
 				cout << "Choice C\n";
+				ShowContacts();
 				break;
 			case 'd':
 				terminate = true;
@@ -51,18 +67,27 @@ void Application::ShowContacts()
 	for(int index = 0; index < NumberOfContacts; index++)
 	{
 		cout << index + 1 << ")";
-	//contactList[index]->print();	
+		List[index]->print();	
+	
+		cout << endl << endl;
 	}
 }
 
 MainContact* Application::getContact()
 {
-	int Who = 0;
+	unsigned int Who = 0;
 	ShowContacts();
 	cout << "\nWho you would like to message: "; 	
 	cin >> Who;
 	
+	while (Who < 1 || Who > List.size())
+	{
+		cout << "Invalid input! Please choose between 1 and " << List.size() << endl;
+		cin >> Who;
+	}
 	int IndexContact = Who - 1;
+
+
 
 	return List[IndexContact];
 }
@@ -70,8 +95,14 @@ MainContact* Application::getContact()
 void Application::getContacts()
 {
 	//ListOfContact
-	//Contact[0] = new FBContact("NAME", "334");
-//	NumberOfContacts++;
+	List[0] = new FB("Sarah Jamal", "Sarah.Jamal8@facebook.com");
+	NumberOfContacts++;
+
+	List[1] = new Email("Faez Soud", "F_soud@yahoo.com");
+	NumberOfContacts++;
+
+	List[2] = new PhoneMsg("Mohamed Saud", "(971) 337-9240");
+	NumberOfContacts++;
 
 }
 
